@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Encriptador y Desencriptador de Texto</title>
+</head>
+<body>
+	<textarea id="mensaje" rows="4" cols="50"></textarea>
+	<br>
+	<button onclick="encriptar()">Encriptar</button>
+	<button onclick="desencriptar()">Desencriptar</button>
+	<button onclick="limpiar()">Limpiar</button>
+	<br><br>
+	<p>Texto encriptado:</p>
+	<textarea id="texto-encriptado" rows="4" cols="50"></textarea>
+	<br><br>
+	<p>Texto desencriptado:</p>
+	<textarea id="texto-desencriptado" rows="4" cols="50"></textarea>
+
+	<script>
+
+		function encriptar() {
+			var mensaje = document.getElementById("mensaje").value;
+			var caracteres = mensaje.split('')
+			for (var i = 0; i < caracteres.length; i++) {
+				var codigo = caracteres[i].charCodeAt(0);
+				codigo += 1;
+				caracteres[i] = String.fromCharCode(codigo);
+			}
+			var mensajeEncriptado = caracteres.join('');
+			document.getElementById("texto-encriptado").value = mensajeEncriptado;
+		}
+
+		function desencriptar() {
+			var mensajeEncriptado = document.getElementById("texto-encriptado").value;
+			var caracteres = mensajeEncriptado.split('');
+			for (var i = 0; i < caracteres.length; i++) {
+				var codigo = caracteres[i].charCodeAt(0);
+				codigo -= 1;
+				caracteres[i] = String.fromCharCode(codigo);
+			}
+			var mensajeDesencriptado = caracteres.join('');
+			document.getElementById("texto-desencriptado").value = mensajeDesencriptado;
+		}
+		function limpiar() {
+			document.getElementById("mensaje").value = "";
+			document.getElementById("texto-encriptado").value = "";
+			document.getElementById("texto-desencriptado").value = "";
+		}
+	</script>
+</body>
+</html>
